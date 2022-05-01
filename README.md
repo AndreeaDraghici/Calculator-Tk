@@ -1,5 +1,5 @@
 # Calculator-Tk
-Sample Calculator GUI with Tkinter
+### Simple calculator app using Python Tkinter
 
 # Description
 ### This is a desktop application to create a simple GUI calculator using Tkinter.
