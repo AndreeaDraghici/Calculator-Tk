@@ -1,43 +1,76 @@
 from tkinter import *
 
-window = Tk()
-window.geometry('500x354')
-window.title('Calculator')
+window = Tk()  # create a GUI window
+window.geometry('500x354')  # set the configuration of GUI window
+window.title('Calculator')  # set the title of GUI window
 window.resizable(0, 0)
 
 
+# Function to update expression
+# in the text entry box
 def click(item) :
-    global expression
-    expression += str(item)
-    input_text.set(expression)
+    global expression  # point out the global expression variable
+    expression += str(item)  # concatenation of string
+    input_text.set(expression)  # update the expression by using set method
 
 
+# Function to clear the contents
+# of text entry box
 def clear() :
     global expression
     expression = ""
     input_text.set("")
 
 
+# Function to evaluate the final expression
 def equals() :
+    # Try and except statement is used
+    # for handling the errors like zero
+    # division error etc.
+
+    # Put that code inside the try block
+    # which may generate the error
+
     try :
         global expression
+
+        # eval function evaluate the expression
+        # and str function convert the result
+        # into string
         rezultat = str(eval(expression))
         input_text.set(rezultat)
+
+        # initialize the expression variable
+        # by empty string
         expression = ""
+
+        # if error is generate then handle
+        # by the except block
     except Exception :
         expression = ""
         input_text.set("Error! Please click C button")
 
 
+# StringVar() is the variable class
+# we create an instance of this class
 input_text = StringVar()
+
+# globally declare the expression variable
 expression = ''
 
+# Let us creating a frame for the input field
 input_frame = Frame(window, width=312, height=50, bd=0, highlightcolor='black', highlightbackground='black', bg='grey')
 input_frame.pack(side=TOP)
 
+# create the text entry box for
+# showing the expression
 input_field = Entry(input_frame, font=('arial', 18, 'bold'), textvariable=input_text, width=50, bg='#eee', bd=0,
                     justify=RIGHT)
+# grid method is used for placing
+# the widgets at respective positions
+# in table like structure .
 input_field.grid(row=0, column=0)
+
 input_field.pack()
 frame_button = Frame(window, width=300, height=300, bg='grey')
 frame_button.pack()
@@ -46,6 +79,10 @@ button_clear = Button(frame_button, text='C', fg='black', width=57, height=3, bd
                       command=lambda : clear()).grid(row=0, column=0, columnspan=3)
 
 
+# create a Buttons and place at a particular
+# location inside the root window .
+# when user press the button, the command or
+# function affiliated to that button is executed .
 def divided_method() :
     Button(frame_button, text='/', fg='black', width=18, height=3, bd=1, bg='#FFA500', cursor='hand2',
            command=lambda : click('/')).grid(row=0, column=3)
@@ -97,6 +134,7 @@ def other_method() :
            command=lambda : equals()).grid(row=4, column=3)
 
 
+# Driver code
 if __name__ == '__main__' :
     divided_method()
     prod_method()
@@ -104,4 +142,6 @@ if __name__ == '__main__' :
     sub_method()
     add_method()
     other_method()
+
+    # start the GUI
     window.mainloop()
