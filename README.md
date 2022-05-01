@@ -18,3 +18,7 @@
 
 -----
 ## Documentation: https://docs.python.org/3/library/tk.html
+
+------
+Version 1.0.0 Initial
+-----
